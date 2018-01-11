@@ -1,31 +1,29 @@
 package com.laboratory;
 
 import java.lang.NumberFormatException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> inputArray = new ArrayList<>();
+        sort();
+    }
 
-        Scanner scanner = new Scanner(System.in);
-
+    private static void sort() {
         System.out.println("Введите комбинацию целых чисел (через пробел):");
-
+        Scanner scanner = new Scanner(System.in);
         String[] line = scanner.nextLine().split(" ");
+        ArraySorter sorter = new ArraySorter();
+        ArrayList<Integer>inputList = new ArrayList<>();
         try {
-            for (int i:inputArray) {
-                inputArray.add(Integer.parseInt(line[i]));
+            for (String aLine : line) {
+                inputList.add(Integer.parseInt(aLine));
             }
         } catch (NumberFormatException e) {
             System.out.println("Разрешается вводить только целые числа");
-            return;
         }
-        System.out.println("Исходный массив: " + inputArray);
-
-        inputArray.sort(Comparator.reverseOrder());
-
-        System.out.println("Результат: " + inputArray);
+        System.out.println(sorter.getSortedArray(inputList));
     }
 }
